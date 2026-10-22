@@ -1,0 +1,15 @@
+# Secrets: never commit API keys
+.env
+*.key
+secrets*
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Local scratch
+*.log
