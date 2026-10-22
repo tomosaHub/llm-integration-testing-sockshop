@@ -1,0 +1,1284 @@
+{
+  "services": {
+    "carts": {
+      "host": "carts",
+      "base_path": "/",
+      "endpoints": [
+        {
+          "operation_id": "Get cart",
+          "method": "GET",
+          "path": "/carts/{customerId}",
+          "path_params": [
+            "customerId"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get cart response",
+            "type": "object",
+            "properties": {
+              "customerId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "customerId"
+            ]
+          },
+          "summary": ""
+        },
+        {
+          "operation_id": "Delete cart",
+          "method": "DELETE",
+          "path": "/carts/{customerId}",
+          "path_params": [
+            "customerId"
+          ],
+          "body_schema": null,
+          "response_schema": null,
+          "summary": ""
+        },
+        {
+          "operation_id": "Add an item to the cart",
+          "method": "POST",
+          "path": "/carts/{customerId}/items",
+          "path_params": [
+            "customerId"
+          ],
+          "body_schema": {
+            "title": "Cart item",
+            "type": "object",
+            "properties": {
+              "itemId": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              },
+              "unitPrice": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "itemId",
+              "quantity",
+              "unitPrice"
+            ]
+          },
+          "response_schema": {
+            "title": "Cart item",
+            "type": "object",
+            "properties": {
+              "itemId": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              },
+              "unitPrice": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "itemId",
+              "quantity",
+              "unitPrice"
+            ]
+          },
+          "summary": ""
+        },
+        {
+          "operation_id": "Update item",
+          "method": "PATCH",
+          "path": "/carts/{customerId}/items",
+          "path_params": [
+            "customerId"
+          ],
+          "body_schema": {
+            "type": "object"
+          },
+          "response_schema": null,
+          "summary": "Update an item"
+        },
+        {
+          "operation_id": "delete",
+          "method": "DELETE",
+          "path": "/carts/{customerId}/items/{itemId}",
+          "path_params": [
+            "customerId",
+            "itemId"
+          ],
+          "body_schema": null,
+          "response_schema": null,
+          "summary": "Delete cart item"
+        }
+      ]
+    },
+    "catalogue": {
+      "host": "catalogue",
+      "base_path": "/",
+      "endpoints": [
+        {
+          "operation_id": "List catalogue",
+          "method": "GET",
+          "path": "/catalogue",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Listresponse"
+            }
+          },
+          "summary": "Catalogue API"
+        },
+        {
+          "operation_id": "Get an item",
+          "method": "GET",
+          "path": "/catalogue/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get an item response",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "imageUrl": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "price": {
+                "type": "number",
+                "format": "double"
+              },
+              "count": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "tag": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "description",
+              "imageUrl",
+              "price",
+              "count",
+              "tag"
+            ]
+          },
+          "summary": ""
+        },
+        {
+          "operation_id": "Get size",
+          "method": "GET",
+          "path": "/catalogue/size",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get size response",
+            "type": "object",
+            "properties": {
+              "size": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "required": [
+              "size"
+            ]
+          },
+          "summary": ""
+        },
+        {
+          "operation_id": "List_",
+          "method": "GET",
+          "path": "/tags",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "List response3",
+            "type": "object",
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "tags"
+            ]
+          },
+          "summary": ""
+        }
+      ]
+    },
+    "orders": {
+      "host": "orders",
+      "base_path": "/",
+      "endpoints": [
+        {
+          "operation_id": "/orders POST",
+          "method": "POST",
+          "path": "/orders",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "customerId": {
+                "type": "string"
+              },
+              "customer": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "null"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "addresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "number": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postcode": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "number",
+                        "street",
+                        "city",
+                        "postcode",
+                        "country"
+                      ]
+                    }
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "longNum": {
+                          "type": "string"
+                        },
+                        "expires": {
+                          "type": "string"
+                        },
+                        "ccv": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "longNum",
+                        "expires",
+                        "ccv"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "firstName",
+                  "lastName",
+                  "username",
+                  "addresses",
+                  "cards"
+                ]
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "null"
+                  },
+                  "number": {
+                    "type": "string"
+                  },
+                  "street": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "postcode": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "number",
+                  "street",
+                  "city",
+                  "postcode",
+                  "country"
+                ]
+              },
+              "card": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "null"
+                  },
+                  "longNum": {
+                    "type": "string"
+                  },
+                  "expires": {
+                    "type": "string"
+                  },
+                  "ccv": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "longNum",
+                  "expires",
+                  "ccv"
+                ]
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "itemId": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "integer"
+                    },
+                    "unitPrice": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "itemId",
+                    "quantity",
+                    "unitPrice"
+                  ]
+                }
+              },
+              "shipment": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ]
+              },
+              "date": {
+                "type": "string"
+              },
+              "total": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id",
+              "customerId",
+              "customer",
+              "address",
+              "card",
+              "items",
+              "shipment",
+              "date",
+              "total"
+            ]
+          },
+          "summary": "Create an order"
+        },
+        {
+          "operation_id": "/orders GET",
+          "method": "GET",
+          "path": "/orders",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "customerOrders": {
+                    "type": "array",
+                    "items": {}
+                  }
+                },
+                "required": [
+                  "customerOrders"
+                ]
+              },
+              "_links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "profile": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "search": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  }
+                },
+                "required": [
+                  "self",
+                  "profile",
+                  "search"
+                ]
+              },
+              "page": {
+                "type": "object",
+                "properties": {
+                  "size": {
+                    "type": "integer"
+                  },
+                  "totalElements": {
+                    "type": "integer"
+                  },
+                  "totalPages": {
+                    "type": "integer"
+                  },
+                  "number": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "size",
+                  "totalElements",
+                  "totalPages",
+                  "number"
+                ]
+              }
+            },
+            "required": [
+              "_embedded",
+              "_links",
+              "page"
+            ]
+          },
+          "summary": "Get orders"
+        }
+      ]
+    },
+    "payment": {
+      "host": "payment",
+      "base_path": "/",
+      "endpoints": [
+        {
+          "operation_id": "/health > GET",
+          "method": "GET",
+          "path": "/health",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Health",
+            "type": "object",
+            "properties": {
+              "health": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "service": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "time": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "required": [
+              "health"
+            ]
+          },
+          "summary": ""
+        },
+        {
+          "operation_id": "/paymentAuth > POST",
+          "method": "POST",
+          "path": "/paymentAuth",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "paymentAuth response",
+            "type": "object",
+            "properties": {
+              "authorised": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "authorised"
+            ]
+          },
+          "summary": "Payment authorisation"
+        }
+      ]
+    },
+    "user": {
+      "host": "user",
+      "base_path": "/",
+      "endpoints": [
+        {
+          "operation_id": "Get Login",
+          "method": "GET",
+          "path": "/login",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get customers response",
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "customer": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Customer"
+                    }
+                  }
+                }
+              },
+              "_links": {
+                "type": "object"
+              },
+              "page": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "_embedded"
+            ]
+          },
+          "summary": "Return logged in user"
+        },
+        {
+          "operation_id": "Set User",
+          "method": "POST",
+          "path": "/register",
+          "path_params": [],
+          "body_schema": {
+            "title": "Register",
+            "type": "object",
+            "properties": {
+              "username": {
+                "description": "Username",
+                "type": "string"
+              },
+              "password": {
+                "description": "Password",
+                "type": "string"
+              },
+              "email": {
+                "description": "Email",
+                "type": "string"
+              }
+            },
+            "required": [
+              "username",
+              "password"
+            ]
+          },
+          "response_schema": {
+            "title": "Post status response",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "summary": "Register new user"
+        },
+        {
+          "operation_id": "Get customers",
+          "method": "GET",
+          "path": "/customers",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get customers response",
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "customer": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Customer"
+                    }
+                  }
+                }
+              },
+              "_links": {
+                "type": "object"
+              },
+              "page": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "_embedded"
+            ]
+          },
+          "summary": "Returns all customers"
+        },
+        {
+          "operation_id": "Get customer",
+          "method": "GET",
+          "path": "/customers/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "_links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "customer": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "addresses": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "cards": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  }
+                },
+                "required": [
+                  "self",
+                  "customer"
+                ]
+              }
+            },
+            "required": [
+              "firstName",
+              "lastName",
+              "username",
+              "_links"
+            ]
+          },
+          "summary": "Returns a customer"
+        },
+        {
+          "operation_id": "Delete customer",
+          "method": "DELETE",
+          "path": "/customers/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Delete status response",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "summary": "Delete customer"
+        },
+        {
+          "operation_id": "Get customer cards",
+          "method": "GET",
+          "path": "/customers/{id}/cards",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get cards response",
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "card": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              },
+              "_links": {
+                "type": "object"
+              },
+              "page": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "_embedded"
+            ]
+          },
+          "summary": "Returns a customer"
+        },
+        {
+          "operation_id": "Get customer addresses",
+          "method": "GET",
+          "path": "/customers/{id}/addresses",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "List response",
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Address"
+                    }
+                  }
+                }
+              },
+              "_links": {
+                "type": "object"
+              },
+              "page": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "_embedded"
+            ]
+          },
+          "summary": "Returns an address"
+        },
+        {
+          "operation_id": "Get cards",
+          "method": "GET",
+          "path": "/cards",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Get cards response",
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "card": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              },
+              "_links": {
+                "type": "object"
+              },
+              "page": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "_embedded"
+            ]
+          },
+          "summary": "Return all cards"
+        },
+        {
+          "operation_id": "Set Card",
+          "method": "POST",
+          "path": "/cards",
+          "path_params": [],
+          "body_schema": {
+            "title": "Post Card",
+            "type": "object",
+            "properties": {
+              "longNum": {
+                "description": "Credit card number",
+                "type": "string"
+              },
+              "expires": {
+                "description": "Card expiration",
+                "type": "string"
+              },
+              "ccv": {
+                "description": "Card ccv",
+                "type": "string"
+              },
+              "userID": {
+                "description": "User to attach this card to.",
+                "type": "string"
+              }
+            }
+          },
+          "response_schema": {
+            "title": "Post status response",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "summary": "Create new card"
+        },
+        {
+          "operation_id": "Get card",
+          "method": "GET",
+          "path": "/cards/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "longNum": {
+                "type": "string"
+              },
+              "expires": {
+                "type": "string"
+              },
+              "ccv": {
+                "type": "string"
+              },
+              "_links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "card": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  }
+                },
+                "required": [
+                  "self",
+                  "card"
+                ]
+              }
+            },
+            "required": [
+              "longNum",
+              "expires",
+              "ccv",
+              "_links"
+            ]
+          },
+          "summary": "Returns a card"
+        },
+        {
+          "operation_id": "Delete card",
+          "method": "DELETE",
+          "path": "/cards/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Delete status response",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "summary": "Delete card"
+        },
+        {
+          "operation_id": "Get addresses",
+          "method": "GET",
+          "path": "/addresses",
+          "path_params": [],
+          "body_schema": null,
+          "response_schema": {
+            "title": "List response",
+            "type": "object",
+            "properties": {
+              "_embedded": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Address"
+                    }
+                  }
+                }
+              },
+              "_links": {
+                "type": "object"
+              },
+              "page": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "_embedded"
+            ]
+          },
+          "summary": "Returns all addresses"
+        },
+        {
+          "operation_id": "Set Address",
+          "method": "POST",
+          "path": "/addresses",
+          "path_params": [],
+          "body_schema": {
+            "title": "Post Address",
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "number": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "postcode": {
+                "type": "string"
+              },
+              "userID": {
+                "description": "User to attach this card to.",
+                "type": "string"
+              }
+            }
+          },
+          "response_schema": {
+            "title": "Post status response",
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "summary": "Create new address"
+        },
+        {
+          "operation_id": "Get address",
+          "method": "GET",
+          "path": "/addresses/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "type": "object",
+            "properties": {
+              "number": {
+                "type": "string"
+              },
+              "street": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "postcode": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "_links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "href": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "href"
+                    ]
+                  }
+                },
+                "required": [
+                  "self",
+                  "address"
+                ]
+              }
+            },
+            "required": [
+              "number",
+              "street",
+              "city",
+              "postcode",
+              "country",
+              "_links"
+            ]
+          },
+          "summary": "Returns an address"
+        },
+        {
+          "operation_id": "Delete address",
+          "method": "DELETE",
+          "path": "/addresses/{id}",
+          "path_params": [
+            "id"
+          ],
+          "body_schema": null,
+          "response_schema": {
+            "title": "Delete status response",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "summary": "Delete address"
+        }
+      ]
+    }
+  },
+  "edges": [
+    {
+      "from_service": "carts",
+      "to_service": "orders",
+      "confidence": "REJECTED",
+      "evidence": "Schema overlap recovered node pair (carts, orders) but direction is incorrect. Known-call annotation confirms correct direction is orders \u2192 carts.",
+      "shared_fields": [
+        "itemId",
+        "quantity",
+        "unitPrice"
+      ]
+    },
+    {
+      "from_service": "user",
+      "to_service": "orders",
+      "confidence": "REJECTED",
+      "evidence": "Schema overlap recovered node pair (user, orders) but direction is incorrect. Known-call annotation confirms correct direction is orders \u2192 user.",
+      "shared_fields": [
+        "ccv",
+        "expires",
+        "longNum",
+        "username"
+      ]
+    },
+    {
+      "from_service": "orders",
+      "to_service": "user",
+      "confidence": "KNOWN_CALL",
+      "evidence": "Orders fetches customer details (name, address, card) from User on checkout",
+      "shared_fields": [],
+      "known_call_evidence": "Orders fetches customer details (name, address, card) from User on checkout",
+      "verification": "OBSERVED: user service logged GetUsers, GetCards and GetAddresses during a checkout (2026-09-19)"
+    },
+    {
+      "from_service": "orders",
+      "to_service": "carts",
+      "confidence": "KNOWN_CALL",
+      "evidence": "Orders reads the customer cart items from Carts on checkout",
+      "shared_fields": [],
+      "known_call_evidence": "Orders reads the customer cart items from Carts on checkout",
+      "verification": "UNVERIFIED: carts does not log individual requests; relationship asserted from architecture documentation only"
+    },
+    {
+      "from_service": "orders",
+      "to_service": "payment",
+      "confidence": "KNOWN_CALL",
+      "evidence": "Orders calls Payment to authorise the card transaction",
+      "shared_fields": [],
+      "known_call_evidence": "Orders calls Payment to authorise the card transaction",
+      "verification": "UNVERIFIED: payment does not log individual requests; relationship asserted from architecture documentation only"
+    }
+  ]
+}

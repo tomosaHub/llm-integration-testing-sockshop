@@ -1,0 +1,8 @@
+{
+  "stage": "ir_construction",
+  "wall_clock_seconds": 0.002,
+  "services": 5,
+  "endpoints": 28,
+  "edges": 5,
+  "timestamp": "2026-09-20T20:25:02"
+}

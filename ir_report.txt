@@ -1,0 +1,87 @@
+==============================================================
+  IR STRUCTURAL VALIDATION REPORT
+  Generated: 2026-09-20 20:25
+  Output:    ir.json
+==============================================================
+
+SERVICES EXTRACTED
+--------------------------------------------------------------
+  carts          5 endpoint(s)  host=carts
+  catalogue      4 endpoint(s)  host=catalogue
+  orders         2 endpoint(s)  host=orders
+  payment        2 endpoint(s)  host=payment
+  user          15 endpoint(s)  host=user
+
+  Total endpoints across all services: 28
+
+EDGE SUMMARY
+--------------------------------------------------------------
+  Total edges inferred:   5
+  CONFIRMED  (overlap + known-call agree):  0
+  CANDIDATE  (overlap only, unverified):    0
+  KNOWN_CALL (annotation only, no overlap): 3
+  REJECTED   (wrong direction from overlap):2
+
+EDGE DETAIL
+--------------------------------------------------------------
+  [REJECTED]    carts -> orders
+               Schema overlap recovered node pair (carts, orders) but direction is incorrect. Known-call annotation confirms correct direction is orders → carts.
+               shared fields: ['itemId', 'quantity', 'unitPrice']
+
+  [REJECTED]    user -> orders
+               Schema overlap recovered node pair (user, orders) but direction is incorrect. Known-call annotation confirms correct direction is orders → user.
+               shared fields: ['ccv', 'expires', 'longNum', 'username']
+
+  [KNOWN_CALL]  orders -> user
+               Orders fetches customer details (name, address, card) from User on checkout
+               OBSERVED: user service logged GetUsers, GetCards and GetAddresses during a checkout (2026-09-19)
+
+  [KNOWN_CALL]  orders -> carts
+               Orders reads the customer cart items from Carts on checkout
+               UNVERIFIED: carts does not log individual requests; relationship asserted from architecture documentation only
+
+  [KNOWN_CALL]  orders -> payment
+               Orders calls Payment to authorise the card transaction
+               UNVERIFIED: payment does not log individual requests; relationship asserted from architecture documentation only
+
+STRUCTURAL VALIDATION vs GROUND TRUTH
+--------------------------------------------------------------
+  Ground-truth edges (Sock Shop architecture): 3
+  Correctly recovered: 3
+  Missed:              0
+  Spurious candidates: 0
+
+  NOTE: the ground-truth set is derived from the known-call
+  annotations, which are emitted into the graph unconditionally.
+  Recovery of these edges is therefore guaranteed by construction
+  and is not evidence about inference quality. The direction
+  result below is.
+
+  Recovered edges:
+    [OK]  orders -> carts
+    [OK]  orders -> payment
+    [OK]  orders -> user
+
+DIRECTION ERRORS (key finding for RQ3 / paper)
+--------------------------------------------------------------
+  Schema-overlap inference recovered the correct node pair
+  but inferred the wrong call direction. The known-call
+  annotation layer was required to correct these edges.
+
+  Inferred:  carts -> orders  [WRONG DIRECTION]
+  Correct:   orders -> carts  [from known-call annotation]
+
+  Inferred:  user -> orders  [WRONG DIRECTION]
+  Correct:   orders -> user  [from known-call annotation]
+
+==============================================================
+  SUMMARY
+--------------------------------------------------------------
+  The graph contains 3 call relationship(s), all supplied by the known-call annotation layer.
+  Edges reaching CONFIRMED (schema and annotation agree): 0.
+  Schema-overlap alone produced 2 direction error(s).
+  Known-call annotations were necessary to correct edge direction,
+  confirming that structural schema matching alone is insufficient
+  to infer cross-service call semantics. (See paper Section 5 / 7.3)
+
+==============================================================
